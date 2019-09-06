@@ -12,7 +12,7 @@ A Tool for QA Testers and Developers.
 Testers could create test cases from Admin page
 while Developers could fetch and execute it inside the XCode UITesting via API automatically using CI.
 
-## Draft IOS Test Cases
+## Sample IOS Test Cases
 
 In the screenshot above, the code was executed like this, so imagine, this is `Codable`, we can just fetch this from any server and/or any file.
 
