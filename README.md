@@ -7,11 +7,10 @@
 
 # AUTOBOT
 
-A Tool for Tester and Developer.
+A Tool for QA Testers and Developers.
 
-Tester should create test cases from Admin page
-
-While Developer should execute the test cases from server via API automatically.
+Testers could create test cases from Admin page
+while Developers could fetch and execute it inside the XCode UITesting via API automatically using CI.
 
 ## Draft IOS Test Cases
 
