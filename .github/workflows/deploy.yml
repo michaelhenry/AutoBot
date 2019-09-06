@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+    - '*'  
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Cocoapods
+      run: |
+        gem install cocoapods
+    - name: Pod Lint
+      run: |
+        set -eo pipefail
+        pod lib lint --allow-warnings
+    - name: Deploy
+      run: |
+        set -eo pipefail
+        pod trunk push --allow-warnings
