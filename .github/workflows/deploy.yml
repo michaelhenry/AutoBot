@@ -1,6 +1,9 @@
 name: Deploy
 
-on: [tags]
+on:
+  push:
+    tags:
+    - '*'  
 
 jobs:
   build:
