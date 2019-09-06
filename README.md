@@ -18,27 +18,33 @@ While Developer should execute the test cases from server via API automatically.
 In the screenshot above, the code was executed like this, so imagine, this is `Codable`, we can just fetch this from any server and/or any file.
 
 ```swift
+import XCTest
+
 class AutoBotUITests: XCTestCase {
 
   let app = XCUIApplication()
+  var autobot:AutoBot!
 
   override func setUp() {
     continueAfterFailure = false
     app.launch()
     XCUIDevice.shared.orientation = .portrait
+    autobot = AutoBot(app: app)
   }
 
   func testLogin() {
-    let loginActions:[Action] = [
-      Action(control: .text("emailField"), actionType: .tap),
-      Action(control: .text("emailField"), actionType: .typeText("me@iamkel.net")),
-      Action(control: .text("passwordField"), actionType: .tap),
-      Action(control: .text("passwordField"), actionType: .typeText("supersecret")),
-      Action(control: .button("loginButton"), actionType: .tap),
+    let loginCommands:[Command] = [
+      .action(.tap, for: .text("emailField")),
+      .action(.typeText("me@iamkel.net"), for: .text("emailField")),
+      .assert(.isEnabled(true), for: .text("emailField")),
+      .assert(.isExists(true), for: .text("emailField")),
+      .assert(.textValue("me@iamkel.net"), for: .text("emailField")),
+      .action(.tap, for: .securedText("passwordField")),
+      .action(.typeText("supersecret"), for: .securedText("passwordField")),
+      .assert(.textValue("•••••••••••"), for: .securedText("passwordField")),
+      .action(.tap, for: .button("loginButton")),
     ]
-
-    let autobot = AutoBot(app: app, actions: loginActions)
-    autobot.execute()
+    autobot.execute(commands: loginCommands)
   }
 }
 ```
