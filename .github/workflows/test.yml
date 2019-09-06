@@ -10,8 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run Test
-      run: 
-        - |
+      run: |
         set -eo pipefail
         xcodebuild test -enableCodeCoverage YES -workspace Example/AutoBot_Example.xcworkspace -scheme AutoBot_Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xʀ' | xcpretty
-        - pod lib lint --allow-warnings
+
