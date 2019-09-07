@@ -1,6 +1,6 @@
 ![Screenshot](screenshot.gif)
 
-[![UITests](https://github.com/michaelhenry/AutoBot/workflows/Test/badge.svg)](https://github.com/michaelhenry/AutoBot/actions)
+[![Tests](https://github.com/michaelhenry/AutoBot/workflows/tests/badge.svg)](https://github.com/michaelhenry/AutoBot/actions)
 [![CI Status](https://img.shields.io/travis/michaelhenry/AutoBot.svg?style=flat)](https://travis-ci.org/michaelhenry/AutoBot)
 [![Version](https://img.shields.io/cocoapods/v/AutoBot.svg?style=flat)](https://cocoapods.org/pods/AutoBot)
 [![License](https://img.shields.io/cocoapods/l/AutoBot.svg?style=flat)](https://cocoapods.org/pods/AutoBot)
