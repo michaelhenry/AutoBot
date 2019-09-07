@@ -36,6 +36,10 @@ func testLogin() {
 
 > Since Android has its own UITesting, this can be also implemented in Android SOON! So one test case for multiple platform!
 
+## Documentations
+
+- TODO
+
 ## Installation
 
 AutoBot is available through [CocoaPods](https://cocoapods.org). To install
@@ -54,12 +58,11 @@ michaelhenry, me@iamkel.net
 AutoBot is available under the MIT license. See the LICENSE file for more info.
 
 
-## Other tools that I made that might help you.
+## Other tools that might help you too.
 
 - [Localizr](https://github.com/michaelhenry/Localizr), Automates your **localization files** for `iOS` and `Android`
 - [Hijackr](https://github.com/michaelhenry/Hijackr), Mock your `URLRequest`
 
-## Limitation
+## Limitations
 
 - TODO
-
