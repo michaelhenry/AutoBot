@@ -5,26 +5,60 @@
 //  Created by Michael Henry Pantaleon on 2019/09/06.
 //
 
-public enum Property {
+public enum Property:CustomStringConvertible {
   
   case isEnabled(Bool)
   case isExists(Bool)
   case title(String)
   case textValue(String)
-  case navBarIdentifier(String)
+
+  public var description: String {
+    switch self {
+    case .isExists:
+      return "isExist"
+    case .isEnabled:
+      return "isEnabled"
+    case .title:
+      return "title"
+    case .textValue:
+      return "textValue"
+    }
+  }
   
-  var predicate:NSPredicate {
+  func propertyName(for control:Control) -> String {
+    switch self {
+    case .isExists:
+      return "exists"
+    case .isEnabled:
+      return "isEnabled"
+    case .textValue:
+      return "value"
+    case .title:
+      switch control {
+      case .navigationBar:
+        return "identifier"
+      default:
+        return "title"
+      }
+    }
+  }
+  
+  func predicate(for control:Control) -> NSPredicate {
+    let propName = propertyName(for: control)
     switch self {
     case .isExists(let value):
-      return NSPredicate(format: "exists == \(value)")
+      return NSPredicate(format: "\(propName) == \(value)")
     case .isEnabled(let value):
-      return NSPredicate(format: "isEnabled == \(value)")
+      return NSPredicate(format: "\(propName) == \(value)")
     case .textValue(let value):
-       return NSPredicate(format: "value == %@", value)
+       return NSPredicate(format: "\(propName) == %@", value)
     case .title(let value):
-      return NSPredicate(format: "title == \(value)")
-    case .navBarIdentifier(let identifier):
-      return NSPredicate(format: "identifier == %@", identifier)
+      switch control {
+      case .navigationBar:
+        return NSPredicate(format: "\(propName) == %@", value)
+      default:
+        return NSPredicate(format: "\(propName) == %@", value)
+      }
     }
   }
 }
