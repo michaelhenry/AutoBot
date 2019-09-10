@@ -28,9 +28,9 @@ class ViewController: UIViewController {
   }
   
   @objc func didTapLogin(_ sender: UIButton) {
-    let alert = UIAlertController(title: "App", message: "Login successful!", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
-    present(alert, animated: true, completion: nil)
+    guard let dashboardVC = storyboard?.instantiateViewController(withIdentifier: "DashboardViewController")
+      else { fatalError("no dashboard vc")}
+    navigationController?.setViewControllers([dashboardVC], animated: true)
   }
 }
 

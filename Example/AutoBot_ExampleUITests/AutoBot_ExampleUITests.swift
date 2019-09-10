@@ -31,13 +31,14 @@ class AutoBotUITests: XCTestCase {
     let loginCommands:[Command] = [
       .action(.tap, for: .text("emailField")),
       .action(.typeText("me@iamkel.net"), for: .text("emailField")),
-      .assert(.isEnabled(true), for: .text("emailField")),
-      .assert(.isExists(true), for: .text("emailField")),
-      .assert(.textValue("me@iamkel.net"), for: .text("emailField")),
+      .expect(.isEnabled(true), for: .text("emailField")),
+      .expect(.isExists(true), for: .text("emailField")),
+      .expect(.textValue("me@iamkel.net"), for: .text("emailField")),
       .action(.tap, for: .securedText("passwordField")),
       .action(.typeText("supersecret"), for: .securedText("passwordField")),
-      .assert(.textValue("•••••••••••"), for: .securedText("passwordField")),
+      .expect(.textValue("•••••••••••"), for: .securedText("passwordField")),
       .action(.tap, for: .button("loginButton")),
+      .expect(.navBarIdentifier("Dashboard"), for: .navigationBar),
     ]
     autobot.execute(commands: loginCommands)
   }

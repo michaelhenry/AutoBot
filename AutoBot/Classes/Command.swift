@@ -7,5 +7,6 @@
 
 public enum Command {
   case action(Action, for: Control)
-  case assert(Property, for: Control)
+  case expect(Property, for: Control)
+  case takeScreenshot
 }

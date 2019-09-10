@@ -9,7 +9,7 @@ import XCTest
 
 public class AutoBot {
   
-  let app:XCUIApplication!
+  unowned var app:XCUIApplication!
   
   public init(app:XCUIApplication) {
     self.app = app
@@ -27,30 +27,47 @@ public class AutoBot {
         case .typeText(let text):
           control.element(from: _self.app).typeText(text)
         }
-      case .assert(let property, let control):
-        switch property {
-        case .isEnabled(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).isEnabled,
-            value,
-            "isEnabled must be \(value) for \(control.identifier)")
-        case .isExists(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).exists,
-            value,
-            "isExists must be \(value) for \(control.identifier)")
-        case .title(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).title,
-            value,
-            "title must be \(value) for \(control.identifier)")
-        case .textValue(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).value as? String,
-            value,
-            "text must be \(value) for \(control.identifier)")
-        }
+      case .expect(let property, let control):
+        let element = control.element(from: _self.app)
+        
+        guard _self.assertWait(element, predicate: property.predicate)
+          else { fatalError("\(control.identifier) is unexpected!") }
+        
+//        switch property {
+//        case .isEnabled(let value):
+//          XCTAssertEqual(
+//            control.element(from: _self.app).isEnabled,
+//            value,
+//            "isEnabled must be \(value) for \(control.identifier)")
+//        case .isExists(let value):
+//          XCTAssertEqual(
+//            control.element(from: _self.app).exists,
+//            value,
+//            "isExists must be \(value) for \(control.identifier)")
+//        case .title(let value):
+//          XCTAssertEqual(
+//            control.element(from: _self.app).title,
+//            value,
+//            "title must be \(value) for \(control.identifier)")
+//        case .textValue(let value):
+//          XCTAssertEqual(
+//            control.element(from: _self.app).value as? String,
+//            value,
+//            "text must be \(value) for \(control.identifier)")
+//        }
+      case .takeScreenshot:
+        _self.takeScreenshot()
       }
     }
+  }
+  
+  func assertWait(_ element:XCUIElement, predicate:NSPredicate, timeout:TimeInterval = 2) -> Bool {
+    let expectation = XCTNSPredicateExpectation(predicate: predicate, object: element)
+    let result:XCTWaiter.Result = XCTWaiter().wait(for: [expectation], timeout: timeout)
+    return result == .completed
+  }
+  
+  func takeScreenshot() {
+    _ = XCUIScreen.main.screenshot()
   }
 }
