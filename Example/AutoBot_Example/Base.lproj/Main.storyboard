@@ -26,34 +26,38 @@
             </objects>
             <point key="canvasLocation" x="-523" y="-48"/>
         </scene>
-        <!--View Controller-->
+        <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AutoBot_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="AutoBot_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1cm-Gs-eD9">
-                                <rect key="frame" x="107" y="148" width="200" height="150"/>
+                                <rect key="frame" x="107" y="148" width="200" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jRb-dw-sSk">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="42.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-Fe-0to">
-                                        <rect key="frame" x="0.0" y="53.5" width="200" height="43"/>
+                                        <rect key="frame" x="0.0" y="52.5" width="200" height="42.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK7-FO-658">
-                                        <rect key="frame" x="0.0" y="106.5" width="200" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="105" width="200" height="42.5"/>
                                         <state key="normal" title="Login"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19z-7k-6Dh">
+                                        <rect key="frame" x="0.0" y="157.5" width="200" height="42.5"/>
+                                        <state key="normal" title="Register"/>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="nEe-YY-R5h"/>
+                                    <constraint firstAttribute="height" constant="200" id="nEe-YY-R5h"/>
                                     <constraint firstAttribute="width" constant="200" id="szT-Mv-MXX"/>
                                 </constraints>
                             </stackView>
@@ -65,11 +69,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Ol-Vg-fl6"/>
+                    <navigationItem key="navigationItem" title="Login" id="0Ol-Vg-fl6"/>
                     <connections>
                         <outlet property="emailField" destination="jRb-dw-sSk" id="yBC-ML-VzQ"/>
                         <outlet property="loginButton" destination="yK7-FO-658" id="poo-eK-Cpp"/>
                         <outlet property="passwordField" destination="ltg-Fe-0to" id="O9v-Wr-PV8"/>
+                        <outlet property="registerButton" destination="19z-7k-6Dh" id="bei-QA-5xa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -90,6 +95,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avk-NV-Csq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="993" y="-48"/>
+        </scene>
+        <!--Registration View Controller-->
+        <scene sceneID="YV7-SW-05D">
+            <objects>
+                <viewController storyboardIdentifier="RegistrationViewController" id="Pgj-zQ-DEV" customClass="RegistrationViewController" customModule="AutoBot_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LGr-6K-xMt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0b6-wA-2qy">
+                                <rect key="frame" x="107" y="104" width="200" height="200"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M4n-4X-xM9">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="42.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-es-NbX">
+                                        <rect key="frame" x="0.0" y="52.5" width="200" height="42.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-P9-UKw">
+                                        <rect key="frame" x="0.0" y="105" width="200" height="42.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pd-gX-RZf">
+                                        <rect key="frame" x="0.0" y="157.5" width="200" height="42.5"/>
+                                        <state key="normal" title="Register"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="BOC-rv-1GU"/>
+                                    <constraint firstAttribute="height" constant="200" id="znS-ca-UMf"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0b6-wA-2qy" firstAttribute="top" secondItem="AJk-US-cnY" secondAttribute="top" constant="60" id="Vq0-Xd-R5P"/>
+                            <constraint firstItem="0b6-wA-2qy" firstAttribute="centerX" secondItem="LGr-6K-xMt" secondAttribute="centerX" id="avY-Kk-Jqp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AJk-US-cnY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gyU-IX-84a"/>
+                    <connections>
+                        <outlet property="confirmPasswordField" destination="dNi-P9-UKw" id="kjo-iz-24J"/>
+                        <outlet property="emailField" destination="M4n-4X-xM9" id="euj-Ue-zWT"/>
+                        <outlet property="passwordField" destination="cWU-es-NbX" id="RhO-vO-7bJ"/>
+                        <outlet property="registerButton" destination="0pd-gX-RZf" id="Fh9-gJ-42t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHV-q8-1x5" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="625"/>
         </scene>
     </scenes>
 </document>
