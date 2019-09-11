@@ -9,7 +9,7 @@ import XCTest
 
 public class AutoBot {
   
-  let app:XCUIApplication!
+  unowned var app:XCUIApplication!
   
   public init(app:XCUIApplication) {
     self.app = app
@@ -27,30 +27,37 @@ public class AutoBot {
         case .typeText(let text):
           control.element(from: _self.app).typeText(text)
         }
-      case .assert(let property, let control):
-        switch property {
-        case .isEnabled(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).isEnabled,
-            value,
-            "isEnabled must be \(value) for \(control.identifier)")
-        case .isExists(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).exists,
-            value,
-            "isExists must be \(value) for \(control.identifier)")
-        case .title(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).title,
-            value,
-            "title must be \(value) for \(control.identifier)")
-        case .textValue(let value):
-          XCTAssertEqual(
-            control.element(from: _self.app).value as? String,
-            value,
-            "text must be \(value) for \(control.identifier)")
-        }
+      case .expect(let property, let control, let within):
+        _self.assertWait(control, property: property, timeout: within)
+      case .takeScreenshot:
+        _self.takeScreenshot()
       }
     }
+  }
+  
+  func assertWait(_ control:Control, property:Property, timeout:TimeInterval = 2) {
+    let element = control.element(from: app)
+    let predicate = property.predicate(for: control)
+    let expectation = XCTNSPredicateExpectation(predicate: predicate, object: element)
+    let result:XCTWaiter.Result = XCTWaiter().wait(for: [expectation], timeout: timeout)
+    switch result {
+    case .interrupted:
+      XCTFail("Expectation for \(control.identifier).\(property) is iterrupted.")
+    case .timedOut:
+      XCTFail("Expectation for \(control.identifier).\(property) timedOut.")
+    case .invertedFulfillment:
+      XCTFail("Expectation for \(control.identifier).\(property) invertedFulfillment.")
+    case .incorrectOrder:
+      XCTFail("Expectation for \(control.identifier).\(property) incorrectOrder.")
+    case .completed:
+      break
+    default:
+      XCTFail("Assertion Failed for \(control.identifier).\(property).")
+    }
+
+  }
+  
+  func takeScreenshot() {
+    _ = XCUIScreen.main.screenshot()
   }
 }
