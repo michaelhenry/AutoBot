@@ -19,8 +19,8 @@ jobs:
     - name: Submit to Cocoapods
       run: |
         set -eo pipefail
+        export LIB_VERSION=${GITHUB_REF}
         pod lib lint --allow-warnings
         pod trunk push --allow-warnings
       env:
-        LIB_VERSION: ${GITHUB_REF}
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
