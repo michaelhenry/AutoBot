@@ -31,14 +31,14 @@ class AutoBotUITests: XCTestCase {
     let loginCommands:[Command] = [
       .action(.tap, for: .text("emailField")),
       .action(.typeText("me@iamkel.net"), for: .text("emailField")),
-      .expect(.isEnabled(true), for: .text("emailField"), within: 2),
-      .expect(.isExists(true), for: .text("emailField"), within: 2),
-      .expect(.textValue("me@iamkel.net"), for: .text("emailField"), within: 2),
+      .expect(.isEnabled(true), for: .text("emailField")),
+      .expect(.isExists(true), for: .text("emailField")),
+      .expect(.textValue("me@iamkel.net"), for: .text("emailField")),
       .action(.tap, for: .securedText("passwordField")),
       .action(.typeText("supersecret"), for: .securedText("passwordField")),
-      .expect(.textValue("•••••••••••"), for: .securedText("passwordField"), within: 2),
+      .expect(.textValue("•••••••••••"), for: .securedText("passwordField")),
       .action(.tap, for: .button("loginButton")),
-      .expect(.title("Dashboard"), for: .navigationBar, within: 2),
+      .expectWithin(2, .title("Dashboard"), for: .navigationBar),
     ]
     autobot.execute(commands: loginCommands)
   }
@@ -48,17 +48,17 @@ class AutoBotUITests: XCTestCase {
       .action(.tap, for: .button("registerButton")),
       .action(.tap, for: .text("emailField")),
       .action(.typeText("new_account@iamkel.net"), for: .text("emailField")),
-      .expect(.isEnabled(true), for: .text("emailField"), within: 2),
-      .expect(.isExists(true), for: .text("emailField"), within: 2),
-      .expect(.textValue("new_account@iamkel.net"), for: .text("emailField"), within: 2),
+      .expect(.isEnabled(true), for: .text("emailField")),
+      .expect(.isExists(true), for: .text("emailField")),
+      .expect(.textValue("new_account@iamkel.netad"), for: .text("emailField")),
       .action(.tap, for: .securedText("passwordField")),
       .action(.typeText("supersecret"), for: .securedText("passwordField")),
-      .expect(.textValue("•••••••••••"), for: .securedText("passwordField"), within: 2),
+      .expect(.textValue("•••••••••••"), for: .securedText("passwordField")),
       .action(.tap, for: .securedText("confirmPasswordField")),
       .action(.typeText("supersecret"), for: .securedText("confirmPasswordField")),
-      .expect(.textValue("•••••••••••"), for: .securedText("confirmPasswordField"), within: 2),
+      .expect(.textValue("•••••••••••"), for: .securedText("confirmPasswordField")),
       .action(.tap, for: .button("registerButton")),
-      .expect(.title("Dashboard"), for: .navigationBar, within: 2),
+      .expectWithin(2, .title("Dashboard"), for: .navigationBar),
     ]
     autobot.execute(commands: registrationCommands)
   }
