@@ -27,17 +27,45 @@ public class AutoBot {
         case .typeText(let text):
           control.element(from: _self.app).typeText(text)
         }
-      case .expect(let property, let control, let within):
-        _self.assertWait(control, property: property, timeout: within)
+      case .expect(let property, let control):
+        _self.assertWait(control, property: property, timeout: 0)
+        
+      case .expectWithin(let timeout, let property, let control):
+        _self.assertWait(control, property: property, timeout: timeout)
       case .takeScreenshot:
         _self.takeScreenshot()
       }
     }
   }
   
-  func assertWait(_ control:Control, property:Property, timeout:TimeInterval = 2) {
+  func assertWait(_ control:Control, property:Property, timeout:TimeInterval = 0) {
     let element = control.element(from: app)
     let predicate = property.predicate(for: control)
+    if timeout == 0 {
+      switch property {
+      case .isEnabled(let value):
+        XCTAssertEqual(
+          control.element(from: app).isEnabled,
+          value,
+          "isEnabled must be \(value) for \(control.identifier)")
+      case .isExists(let value):
+        XCTAssertEqual(
+          control.element(from: app).exists,
+          value,
+          "isExists must be \(value) for \(control.identifier)")
+      case .title(let value):
+        XCTAssertEqual(
+          control.element(from: app).title,
+          value,
+          "title must be \(value) for \(control.identifier)")
+      case .textValue(let value):
+        XCTAssertEqual(
+          control.element(from: app).value as? String,
+          value,
+          "text must be \(value) for \(control.identifier)")
+      }
+      return
+    }
     let expectation = XCTNSPredicateExpectation(predicate: predicate, object: element)
     let result:XCTWaiter.Result = XCTWaiter().wait(for: [expectation], timeout: timeout)
     switch result {
