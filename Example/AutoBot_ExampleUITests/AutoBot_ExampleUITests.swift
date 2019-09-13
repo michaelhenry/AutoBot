@@ -30,6 +30,7 @@ class AutoBotUITests: XCTestCase {
   func testLoginProcess() {
     let loginCommands:[Command] = [
       .action(.tap, for: .text("emailField")),
+       .action(.tap, for: .text("emailField")),
       .action(.typeText("me@iamkel.net"), for: .text("emailField")),
       .expect(.isEnabled(true), for: .text("emailField")),
       .expect(.isExists(true), for: .text("emailField")),
@@ -50,7 +51,7 @@ class AutoBotUITests: XCTestCase {
       .action(.typeText("new_account@iamkel.net"), for: .text("emailField")),
       .expect(.isEnabled(true), for: .text("emailField")),
       .expect(.isExists(true), for: .text("emailField")),
-      .expect(.textValue("new_account@iamkel.netad"), for: .text("emailField")),
+      .expect(.textValue("new_account@iamkel.net"), for: .text("emailField")),
       .action(.tap, for: .securedText("passwordField")),
       .action(.typeText("supersecret"), for: .securedText("passwordField")),
       .expect(.textValue("•••••••••••"), for: .securedText("passwordField")),
