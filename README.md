@@ -5,6 +5,7 @@
 [![Version](https://img.shields.io/cocoapods/v/AutoBot.svg?style=flat)](https://cocoapods.org/pods/AutoBot)
 [![License](https://img.shields.io/cocoapods/l/AutoBot.svg?style=flat)](https://cocoapods.org/pods/AutoBot)
 [![Platform](https://img.shields.io/cocoapods/p/AutoBot.svg?style=flat)](https://cocoapods.org/pods/AutoBot)
+[![codebeat badge](https://codebeat.co/badges/9cf0aecd-02bb-4319-89b6-b1cd4442243a)](https://codebeat.co/projects/github-com-michaelhenry-autobot-master)
 
 # AUTOBOT
 
