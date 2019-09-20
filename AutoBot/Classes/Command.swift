@@ -10,5 +10,5 @@ public enum Command {
   case action(Action, for: Control)
   case expect(Property, for: Control)
   case expectWithin(TimeInterval, Property, for: Control)
-  case takeScreenshot
+  case takeScreenshot(String)
 }

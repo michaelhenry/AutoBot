@@ -9,7 +9,7 @@ import XCTest
 
 public class AutoBot {
   
-  unowned var app:XCUIApplication!
+  var app:XCUIApplication!
   
   public init(app:XCUIApplication) {
     self.app = app
@@ -29,12 +29,13 @@ public class AutoBot {
         case .typeText(let text):
           element.typeText(text)
         }
+        sleep(1)
       case .expect(let property, let control):
         _self.assert(control, property: property)
       case .expectWithin(let timeout, let property, let control):
         _self.assertWait(control, property: property, timeout: timeout)
-      case .takeScreenshot:
-        _self.takeScreenshot()
+      case .takeScreenshot(let identifier):
+        _self.takeScreenshot(identifier)
       }
     }
   }
@@ -86,7 +87,8 @@ public class AutoBot {
     }
   }
   
-  func takeScreenshot() {
-    _ = XCUIScreen.main.screenshot()
+  func takeScreenshot(_ identifier:String) {
+    snapshot(identifier)
+//    _ = XCUIScreen.main.screenshot()
   }
 }

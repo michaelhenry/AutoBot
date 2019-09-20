@@ -4,6 +4,7 @@
 //
 //  Created by Michael Henry Pantaleon on 2019/09/06.
 //
+import Foundation
 
 public enum Property:CustomStringConvertible {
   
