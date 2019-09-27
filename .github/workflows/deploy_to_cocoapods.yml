@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.6
+    - uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.8
 
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
