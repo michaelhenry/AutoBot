@@ -2,8 +2,8 @@ name: deploy_to_cocoapods
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - 'test'
 
 jobs:
   build:
@@ -12,15 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install Cocoapods
-      run: |
-        gem install cocoapods
-        pod install --project-directory=Example
-    - name: Deploy to Cocoapods
-      run: |
-        set -eo pipefail
-        export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
-        pod lib lint --allow-warnings
-        pod trunk push --allow-warnings
+    - uses: michaelhenry/deploy-to-cocoapods-github-action@1.0
+
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
